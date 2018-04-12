@@ -140,6 +140,7 @@ def bind_method(**config):
                     raise InstagramAPIError(content_obj.get('code'), "Rate limited", error_message)
                 raise InstagramAPIError(content_obj.get('code'), content_obj.get('error_type'), content_obj.get('error_message'))
             api_responses = []
+            print('insta response:', content_obj)
             status_code = content_obj['meta']['code']
             self.api.x_ratelimit_remaining = response.get("x-ratelimit-remaining",None)
             self.api.x_ratelimit = response.get("x-ratelimit-limit",None)
@@ -185,7 +186,6 @@ def bind_method(**config):
                                                                                  self.path,
                                                                                  self.parameters,
                                                                                  include_secret=self.include_secret)
-            print('insta response:', body)
             if self.with_next_url:
                 return self._get_with_next_url(self.with_next_url, method, body, headers)
             if self.as_generator:
