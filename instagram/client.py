@@ -1,3 +1,5 @@
+import logging
+
 from . import oauth2
 from .bind import bind_method
 from .models import MediaShortcode, Media, User, Location, Tag, Comment, Relationship
@@ -6,6 +8,9 @@ MEDIA_ACCEPT_PARAMETERS = ["count"]
 SEARCH_ACCEPT_PARAMETERS = ["q", "count"]
 
 SUPPORTED_FORMATS = ['json']
+
+
+logger = logging.getLogger(__name__)
 
 
 class InstagramAPI(oauth2.OAuth2API):
@@ -21,6 +26,8 @@ class InstagramAPI(oauth2.OAuth2API):
     x_ratelimit = None
 
     def __init__(self, *args, **kwargs):
+        print('init insta')
+        logger.error('init insta logger')
         format = kwargs.get('format', 'json')
         if format in SUPPORTED_FORMATS:
             self.format = format
