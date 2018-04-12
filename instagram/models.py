@@ -245,20 +245,21 @@ class Position(ApiModel):
 
 
 class UserInPhoto(ApiModel):
-    def __init__(self, user, position):
+    def __init__(self, username, position):
         self.position = position
-        self.user = user
+        self.username = username
 
     def __unicode__(self):
         return "UserInPhoto: (%s, %s)" % (self.user, self.position)
 
     @classmethod
     def object_from_dictionary(cls, entry):
-        user = None
+        username = None
+        position = None
         if 'user' in entry:
-            user = User.object_from_dictionary(entry['user'])
+            username = entry['user']['username']
 
         if 'position' in entry:
             position = Position(entry['position']['x'], entry['position']['y'])
 
-        return UserInPhoto(user, position)
+        return UserInPhoto(username, position)
