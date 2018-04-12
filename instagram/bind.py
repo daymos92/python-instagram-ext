@@ -194,6 +194,8 @@ def bind_method(**config):
 
     def _call(api, *args, **kwargs):
         method = InstagramAPIMethod(api, *args, **kwargs)
-        return method.execute()
+        content =  method.execute()
+        print(content)
+        return content
 
     return _call
