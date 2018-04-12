@@ -1,4 +1,4 @@
-import logging
+# import logging
 import urllib
 from .oauth2 import OAuth2Request
 import re
@@ -12,7 +12,7 @@ import sys
 re_path_template = re.compile('{\w+}')
 
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 
 def encode_string(value):
@@ -199,15 +199,15 @@ def bind_method(**config):
     def _call(api, *args, **kwargs):
         method = InstagramAPIMethod(api, *args, **kwargs)
         content = method.execute()
-        logger.error(
-            'Insta content',
-            exc_info=True,
-            extra={
-                'stack': True,
-                'data': {
-                    'content': content
-                }
-            })
+        # logger.error(
+        #     'Insta content',
+        #     exc_info=True,
+        #     extra={
+        #         'stack': True,
+        #         'data': {
+        #             'content': content
+        #         }
+        #     })
         return content
 
     return _call
