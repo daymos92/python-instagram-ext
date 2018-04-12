@@ -1,3 +1,4 @@
+import logging
 import urllib
 from .oauth2 import OAuth2Request
 import re
@@ -9,6 +10,9 @@ from six.moves.urllib.parse import quote
 import sys
 
 re_path_template = re.compile('{\w+}')
+
+
+logger = logging.getLogger(__name__)
 
 
 def encode_string(value):
@@ -194,8 +198,8 @@ def bind_method(**config):
 
     def _call(api, *args, **kwargs):
         method = InstagramAPIMethod(api, *args, **kwargs)
-        content =  method.execute()
-        print(content)
+        content = method.execute()
+        logger.error(content)
         return content
 
     return _call
