@@ -10,9 +10,6 @@ SEARCH_ACCEPT_PARAMETERS = ["q", "count"]
 SUPPORTED_FORMATS = ['json']
 
 
-logger = logging.getLogger(__name__)
-
-
 class InstagramAPI(oauth2.OAuth2API):
 
     host = "api.instagram.com"
@@ -26,8 +23,6 @@ class InstagramAPI(oauth2.OAuth2API):
     x_ratelimit = None
 
     def __init__(self, *args, **kwargs):
-        print('init insta')
-        logger.error('init insta logger')
         format = kwargs.get('format', 'json')
         if format in SUPPORTED_FORMATS:
             self.format = format
