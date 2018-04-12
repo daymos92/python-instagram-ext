@@ -199,7 +199,15 @@ def bind_method(**config):
     def _call(api, *args, **kwargs):
         method = InstagramAPIMethod(api, *args, **kwargs)
         content = method.execute()
-        logger.error(content)
+        logger.error(
+            'Insta content',
+            exc_info=True,
+            extra={
+                'stack': True,
+                'data': {
+                    'content': content
+                }
+            })
         return content
 
     return _call
